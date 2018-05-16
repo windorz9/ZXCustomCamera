@@ -13,6 +13,10 @@
 		2693C6A720AC0F9D00E4D1EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2693C6A620AC0F9D00E4D1EE /* Assets.xcassets */; };
 		2693C6AA20AC0F9D00E4D1EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2693C6A820AC0F9D00E4D1EE /* LaunchScreen.storyboard */; };
 		2693C6AD20AC0F9D00E4D1EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2693C6AC20AC0F9D00E4D1EE /* main.m */; };
+		2693C6B520AC14E000E4D1EE /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2693C6B420AC14E000E4D1EE /* CameraViewController.m */; };
+		2693C6B820AC195D00E4D1EE /* CameraFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2693C6B720AC195D00E4D1EE /* CameraFilterView.m */; };
+		2693C6BB20AC1B3C00E4D1EE /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2693C6BA20AC1B3C00E4D1EE /* CheckViewController.m */; };
+		2693C6BE20AC1C8800E4D1EE /* MyCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 2693C6BD20AC1C8800E4D1EE /* MyCamera.m */; };
 		4507900F0E98FEF0833E63BE /* libPods-CustomCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A4851D5817CE16F065F97 /* libPods-CustomCamera.a */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +31,14 @@
 		2693C6A920AC0F9D00E4D1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2693C6AB20AC0F9D00E4D1EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2693C6AC20AC0F9D00E4D1EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2693C6B320AC14E000E4D1EE /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		2693C6B420AC14E000E4D1EE /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		2693C6B620AC195D00E4D1EE /* CameraFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraFilterView.h; sourceTree = "<group>"; };
+		2693C6B720AC195D00E4D1EE /* CameraFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraFilterView.m; sourceTree = "<group>"; };
+		2693C6B920AC1B3C00E4D1EE /* CheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckViewController.h; sourceTree = "<group>"; };
+		2693C6BA20AC1B3C00E4D1EE /* CheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
+		2693C6BC20AC1C8800E4D1EE /* MyCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
+		2693C6BD20AC1C8800E4D1EE /* MyCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCamera.m; sourceTree = "<group>"; };
 		4B0A4851D5817CE16F065F97 /* libPods-CustomCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CustomCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D08FB7DC29019E158EE2F6A /* Pods-CustomCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		B72FD05E71A04011DA875E13 /* Pods-CustomCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +81,14 @@
 				2693C69E20AC0F9400E4D1EE /* AppDelegate.m */,
 				2693C6A020AC0F9400E4D1EE /* ViewController.h */,
 				2693C6A120AC0F9400E4D1EE /* ViewController.m */,
+				2693C6B320AC14E000E4D1EE /* CameraViewController.h */,
+				2693C6B420AC14E000E4D1EE /* CameraViewController.m */,
+				2693C6BC20AC1C8800E4D1EE /* MyCamera.h */,
+				2693C6BD20AC1C8800E4D1EE /* MyCamera.m */,
+				2693C6B620AC195D00E4D1EE /* CameraFilterView.h */,
+				2693C6B720AC195D00E4D1EE /* CameraFilterView.m */,
+				2693C6B920AC1B3C00E4D1EE /* CheckViewController.h */,
+				2693C6BA20AC1B3C00E4D1EE /* CheckViewController.m */,
 				2693C6A320AC0F9400E4D1EE /* Main.storyboard */,
 				2693C6A620AC0F9D00E4D1EE /* Assets.xcassets */,
 				2693C6A820AC0F9D00E4D1EE /* LaunchScreen.storyboard */,
@@ -215,6 +235,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2693C6A220AC0F9400E4D1EE /* ViewController.m in Sources */,
+				2693C6BB20AC1B3C00E4D1EE /* CheckViewController.m in Sources */,
+				2693C6BE20AC1C8800E4D1EE /* MyCamera.m in Sources */,
+				2693C6B520AC14E000E4D1EE /* CameraViewController.m in Sources */,
+				2693C6B820AC195D00E4D1EE /* CameraFilterView.m in Sources */,
 				2693C6AD20AC0F9D00E4D1EE /* main.m in Sources */,
 				2693C69F20AC0F9400E4D1EE /* AppDelegate.m in Sources */,
 			);
@@ -357,15 +381,18 @@
 			baseConfigurationReference = 6D08FB7DC29019E158EE2F6A /* Pods-CustomCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27L5S4UTFM;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = windorz.CustomCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -375,15 +402,18 @@
 			baseConfigurationReference = B72FD05E71A04011DA875E13 /* Pods-CustomCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27L5S4UTFM;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = windorz.CustomCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
