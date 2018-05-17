@@ -6,7 +6,6 @@
 //  Copyright © 2018年 张雄. All rights reserved.
 //
 
-#import "GPUImageStillCamera.h"
 #import <GPUImage.h>
 
 @interface MyCamera : GPUImageStillCamera

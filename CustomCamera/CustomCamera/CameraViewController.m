@@ -34,22 +34,29 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
 }
 
 // 新建相机管理者
-@property (nonatomic, strong) GPUImageStillCamera *cameraManager;
+@property (nonatomic, strong) MyCamera *cameraManager;
+// self.view
 @property (strong, nonatomic) IBOutlet UIView *cameraView;
+// 预览视图
 @property (weak, nonatomic) IBOutlet UIView *preview;
+// 底部工具栏
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
-// 自定义滤镜
+// 自定义滤镜 collectionView
 @property (nonatomic, strong) CameraFilterView *cameraFilterView;
-
+// 闪光灯模式 枚举
 @property (nonatomic , assign) CameraManagerFlashMode flashMode;
+// 滤镜 view 是否隐藏
 @property (nonatomic , assign) FilterViewState filterViewState;
+// 闪光灯按钮
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 
+// 记录缩放比例
 @property (nonatomic , assign) CGFloat beginGestureScale;//开始的缩放比例
 @property (nonatomic , assign) CGFloat effectiveScale;//最后的缩放比例
-
+// 声明一个滤镜
 @property (nonatomic, strong) GPUImageOutput *filter; // 滤镜
+
 @property (nonatomic, strong) GPUImageView *filterView; //实时滤镜预览视图
 
 @property (nonatomic, strong) AVCaptureStillImageOutput *photoOutput;//用于保存原图
@@ -67,7 +74,8 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
     _checkVC = [[CheckViewController alloc] init];
     
     
-    _cameraManager = [[MyCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionBack];
+    _cameraManager = [[MyCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
+//    _cameraManager.getPhotoOutput
     _cameraManager.outputImageOrientation = UIInterfaceOrientationPortrait; // 设置照片的方向为设备固定的方向
     _cameraManager.horizontallyMirrorFrontFacingCamera = YES;//设置是否为镜像
     _cameraManager.horizontallyMirrorRearFacingCamera = NO;
@@ -78,12 +86,17 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
     /**
      *设置cameraManager的输出对象为filter,然后将preview强制转换为filterView添加到filter的输出对象中，这样在filterView中显示的就是相机捕捉到的并且经过filter滤镜处理的实时图像了
      */
+    
     [self.cameraManager addTarget:_filter];
     _filterView = (GPUImageView *)self.preview;
+    // 前置 最高 960 x 1280
+    // 后置最优: 2448 x 3264
+    _filterView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [_filter addTarget:_filterView];
 
     //初始化闪光灯模式为Auto
     [self setFlashMode:CameraManagerFlashModeOn];
+    
     
     //默认滤镜视图为隐藏，就是点击滤镜的按钮才会出现让你选择滤镜的那个小视图
     [self setFilterViewState:FilterViewHidden];
@@ -96,6 +109,12 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
     [self.cameraManager startCameraCapture];
 }
 
+// 隐藏状态栏
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+// 滤镜按钮 是否打开滤镜
 - (IBAction)useFilter:(id)sender {
     
     if (self.filterViewState == FilterViewHidden) {
@@ -109,12 +128,14 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
 
     
 }
+// 是否打开闪光灯
 - (IBAction)changeFlash:(id)sender {
     [self changeFlashMode:_flashButton];
 
 }
+
+// 点击拍摄按钮 进行拍照
 - (IBAction)takePhoto:(id)sender {
-    
     
 //    _photoOutput = [_cameraManager getPhotoOutput];//得到源数据输出流
 //    NSDictionary * outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey, nil];
@@ -131,13 +152,28 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
 //            [self.navigationController pushViewController:_checkVC animated:YES];
 //        }
 //    }];
+    
+    [self.cameraManager capturePhotoAsImageProcessedUpToFilter:self.filter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+        // 消耗内存
+        NSData *dataForJpegFile = UIImageJPEGRepresentation(processedImage, 1.0);
+        
+        // 保存到 documentsDirectory
+        NSString *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSError *error2 = nil;
+        if (![dataForJpegFile writeToFile:[paths stringByAppendingPathComponent:@"testImage.jpg"] options:NSAtomicWrite error:&error2]) {
+            return ;
+        }
+
+    }];
 
 }
 
-//设置闪光灯模式
-
+//设置闪光灯模式 需要判断是否有闪光灯(前置摄像头还是后置摄像头).
 - (void)setFlashMode:(CameraManagerFlashMode)flashMode {
     _flashMode = flashMode;
+    if (![self.cameraManager.inputCamera hasFlash]) {
+        return;
+    }
     
     switch (flashMode) {
         case CameraManagerFlashModeAuto: {
@@ -179,15 +215,15 @@ typedef NS_ENUM(NSUInteger, CameraManagerFlashMode) {
     switch (self.flashMode) {
         case CameraManagerFlashModeAuto:
             self.flashMode = CameraManagerFlashModeOn;
-            [button setImage:[UIImage imageNamed:@"flashing_on"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"flashing_on"] forState:UIControlStateNormal];
             break;
         case CameraManagerFlashModeOff:
             self.flashMode = CameraManagerFlashModeAuto;
-            [button setImage:[UIImage imageNamed:@"flashing_auto"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"flashing_auto"] forState:UIControlStateNormal];
             break;
         case CameraManagerFlashModeOn:
             self.flashMode = CameraManagerFlashModeOff;
-            [button setImage:[UIImage imageNamed:@"flashing_off"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"flashing_off"] forState:UIControlStateNormal];
             break;
             
         default:
